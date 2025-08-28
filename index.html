@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="root"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        const listProjects = [
+            {
+                id: 1,
+                name: "Counter App",
+                path: "/counter.html"
+            },
+            {
+                id: 2,
+                name: "Todo List",
+                path: "/todo.html"
+            },
+            {
+                id: 3,
+                name: "Profile Card",
+                path: ""
+            },
+            {
+                id: 4,
+                name: "Product List",
+                path: ""
+            },
+            {
+                id: 5,
+                name: "Comment System",
+                path: ""
+            },
+            {
+                id: 6,
+                name: "Weather App",
+                path: ""
+            },
+        ]
+        function Project() {
+            return <>
+                <ul className = "navbar">
+                    {listProjects.map(item => {
+                        return (
+                                <li key={item.id} className="item-project"><a href={item.path} >{item.name}</a></li>
+                        )
+                    } )}
+                </ul>
+            </>
+        }
+
+        const app = <>
+            <Project />
+        </>
+        const root = ReactDOM.createRoot(document.querySelector(".root"));
+        root.render(app)
+    </script>
+</body>
+</html>

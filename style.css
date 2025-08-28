@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    gap: 16px; /* Khoảng cách giữa các item */
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 24px;
+    list-style: none;
+    justify-content: center; /* căn giữa navbar */
+    align-items: center;
+}
+
+.item-project {
+    padding: 0; /* padding cho li không cần thiết nếu padding cho a */
+    border-radius: 20px;
+    height: auto;
+}
+
+.item-project a {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: #333;
+    background: #e3e6ea;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 500;
+}
+
+.item-project a:hover {
+    background: #007bff;
+    color: #fff;
+}

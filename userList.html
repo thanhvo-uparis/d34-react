@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+</head>
+<body>
+    <div class="root"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+
+        function UsersList() {
+            const [users, setUsers] = React.useState([]);
+            const [loading, setLoading] = React.useState(true);
+
+            React.useEffect(() => {
+                setTimeout(() => {
+                    fetch("https://jsonplaceholder.typicode.com/users")
+                    .then(res => res.json())
+                    .then(data => setUsers(data))
+                    .finally(() => {
+                        setLoading(false);
+                    })
+                }, 1000);
+            }, [])
+            return (
+                <>
+                <h2>Users List</h2>
+                    <ul>
+                        {loading ? <li>Loading</li> : null}
+                        {users.map((user) => (
+                            <li key={user.id}>{user.username} - {user.email}</li>
+                        ))}
+                    </ul>
+                </>
+            )
+        }
+
+        const app = <>
+            <UsersList/>
+        </>
+        const root = ReactDOM.createRoot(document.querySelector(".root"));
+        root.render(app);
+    </script>
+</body>
+</html>

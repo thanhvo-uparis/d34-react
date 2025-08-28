@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Counter</title>
+    <style>
+        .positive {
+            color: greenyellow;
+        }
+
+        .zero {
+            color: #686868;
+        }
+
+        .negative {
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <div class="root"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        function Counter() {
+            const [value, setValue] = React.useState(0);
+            
+            return <>
+                <div>
+                    <h2 className = {value > 0 ? "positive" : value === 0 ? "zero" : "negative"}>{value}</h2>
+                </div>
+                <p>{(value > 0) ? "Dương" : (value === 0) ? "Bằng không" : "Âm"}</p>
+                <button onClick={() => {setValue(value + 1)}}>+</button>
+                <button onClick={() => {setValue(value - 1)}}>-</button>
+                <button onClick={() => {setValue(0)}}>Reset</button>
+            </>
+        }
+        const app = (
+            <>
+                <h1>Counter App</h1>
+                <Counter/>
+            </>
+        )
+
+        const root = ReactDOM.createRoot(document.querySelector(".root"));
+        root.render(app);
+    </script>
+</body>
+</html>
