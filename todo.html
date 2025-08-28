@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/todo-app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="root"></div>
@@ -11,30 +13,44 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script type="text/babel">
-        const listProjects = [
-            {
-                name: "Counter App",
-                color: "green"
-            }
-            ,
-            {
-                name: "Todo List",
-                color: "red"
-            }
-        ]
-        function Home() {
-            const [name, setName] = React.useState([]);
-            React.useEffect(() => {
+        function TodoApp() {
+            const [todo, setTodo] = React.useState("");
+            const [listTasks, setListTasks] = React.useState([]);
 
-            }, []);
-            return <div className="item">
-                        <p class="project-name"></p>
+            const handleSubmit = (event) => {
+                event.preventDefault();
+                setListTasks([...listTasks, todo]); //push todo to listTask array
+                setTodo("");
+            }
+
+            return (
+                <div className = "main"> 
+                    {console.log("render", todo)}
+                    <form onSubmit={handleSubmit}>
+                        <input type="text"
+                            id="input"
+                            placeholder="Enter your task"
+                            value = {todo}
+                            onChange = {(e) => {setTodo(e.target.value)}}
+                        />
+                       
+                        <button type="submit">ADD</button>    
+                    </form>
+
+                    <div className="content">
+                        <ul>
+                            {listTasks.map((task, index) => <li key={index}>{task} <i className ="fa-solid fa-trash"></i></li>)}
+                        </ul>
+                    </div>
                 </div>
+            )
         }
+
         const app = (
-            <>
-                <Home/>
-            </>
+            <div className = "container">
+                <h2>Todo List App</h2>
+                <TodoApp />
+            </div>
         )
 
         const root = ReactDOM.createRoot(document.querySelector(".root"));

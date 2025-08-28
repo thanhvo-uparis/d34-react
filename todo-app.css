@@ -1,0 +1,21 @@
+/* todo list app */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.root {
+    display: grid;
+    justify-items: center;
+}
+
+.container {
+    width: 451px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: aquamarine;
+    border-radius: 21px;
+}
