@@ -14,18 +14,28 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script type="text/babel">
         function TodoApp() {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            
             const [todo, setTodo] = React.useState("");
-            const [listTasks, setListTasks] = React.useState([]);
+            const [listTasks, setListTasks] = React.useState(tasks);
 
             const handleSubmit = (event) => {
                 event.preventDefault();
-                setListTasks([...listTasks, todo]); //push todo to listTask array
+                const newTasks = [...listTasks, todo];
+                setListTasks(newTasks); //push todo to listTask array
+                localStorage.setItem("tasks", JSON.stringify(newTasks));
                 setTodo("");
+            }
+
+            const removeTask = (index) => {
+                const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                tasks.splice(index, 1);
+                setListTasks(tasks);
+                localStorage.setItem("tasks", JSON.stringify(tasks));
             }
 
             return (
                 <div className = "main"> 
-                    {console.log("render", todo)}
                     <form onSubmit={handleSubmit}>
                         <input type="text"
                             id="input"
@@ -39,7 +49,7 @@
 
                     <div className="content">
                         <ul>
-                            {listTasks.map((task, index) => <li key={index}>{task} <i className ="fa-solid fa-trash"></i></li>)}
+                            {listTasks.map((task, index) => <li key={index}>{task} <i onClick={() => {removeTask(index)}} className ="fa-solid fa-trash"></i></li>)}
                         </ul>
                     </div>
                 </div>
