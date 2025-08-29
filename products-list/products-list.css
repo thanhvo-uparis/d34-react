@@ -50,3 +50,41 @@
     display: flex;
     justify-content: end;
 }
+
+/* modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9bafb2d1;
+}
+
+.modal-container {
+    max-width: 550px;
+    min-height: 223px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 30px;
+}
+
+#btn-close {
+    cursor: pointer;
+}
